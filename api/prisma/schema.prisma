@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id            String   @id @default(uuid())
+  nome          String
+  email         String   @unique
+  senha         String
+  dtCriacao     DateTime @default(now()) @map("dt_criacao")
+  dtAtualizacao DateTime @updatedAt @map("dt_atualizacao")
+
+  urls UrlEncurtada[]
+
+  @@map("usuario")
+}
+
+model UrlEncurtada {
+  // O código curto é a própria chave: é ele que aparece na URL encurtada.
+  codigo      String   @id
+  urlOriginal String   @map("url_original")
+  // Nulo = encurtada por quem não estava logado.
+  // DECISÃO EM ABERTO: a turma pode decidir exigir login para encurtar.
+  usuarioId   String?  @map("usuario_id")
+  dtCriacao   DateTime @default(now()) @map("dt_criacao")
+  qtdAcessos  Int      @default(0) @map("qtd_acessos")
+
+  usuario Usuario? @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+
+  @@map("url_encurtada")
+}

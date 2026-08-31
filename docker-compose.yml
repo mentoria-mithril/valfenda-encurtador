@@ -1,0 +1,22 @@
+# Banco de desenvolvimento. Sobe com: docker compose up -d
+# Usuário e senha são locais e descartáveis — o banco não sai da sua máquina.
+services:
+  banco:
+    image: postgres:16-alpine
+    container_name: encurtador-banco
+    environment:
+      POSTGRES_USER: encurtador
+      POSTGRES_PASSWORD: encurtador
+      POSTGRES_DB: encurtador
+    ports:
+      - "5433:5432"
+    volumes:
+      - dados:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U encurtador -d encurtador"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  dados:
