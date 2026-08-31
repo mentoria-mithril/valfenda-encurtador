@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/servidor.ts",
+    "dev": "tsx watch src/server.ts",
     "build": "tsc",
-    "start": "node dist/servidor.js",
+    "start": "node dist/server.js",
     "checar": "tsc --noEmit",
     "teste": "vitest run",
     "banco:migrar": "prisma migrate dev",

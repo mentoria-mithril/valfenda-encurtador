@@ -1,4 +1,4 @@
-import { pingar } from "../repositories/saudeRepositorio.js";
+import { pingar } from "../repositories/healthRepository.js";
 
 // A regra de negócio mora aqui. Este serviço é o exemplo mínimo: ele não sabe
 // que existe HTTP, não recebe `req` nem `res`, e não fala com o Prisma —
