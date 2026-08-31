@@ -1,8 +1,13 @@
 # Encurtador de URL — turma Valfenda
 
-Projeto 1 da turma. O produto está desenhado no `overview.excalidraw` que já vimos
-em aula: encurtar uma URL (com alias opcional), acessar pelo link curto,
+Projeto 1 da turma. O produto está desenhado no [`overview.excalidraw`](overview.excalidraw)
+que vimos em aula: encurtar uma URL (com alias opcional), acessar pelo link curto,
 acompanhar o histórico de acessos e ter conta para chamar as URLs de suas.
+
+> **O desenho é a fonte da verdade do produto.** Ele tem as histórias, o modelo de
+> dados, a lista de endpoints e os rascunhos de tela. Abra em <https://excalidraw.com>
+> (menu → *Open* → escolha o arquivo) ou direto no VS Code com a extensão
+> *Excalidraw*. Antes de começar uma fatia, volte nele.
 
 Este repositório já vem com o esqueleto de pé. A dificuldade do projeto é
 modelagem, regra de negócio e trabalho em time — não `tsconfig`.
