@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
 import { ZodError } from "zod";
-import { ErroDeDominio } from "../erros/ErroDeDominio.js";
+import { ErroDeDominio } from "../errors/ErroDeDominio.js";
 
 // Último middleware da cadeia. Traduz erro em resposta HTTP — nenhum controlador
 // precisa de try/catch para isso (o Express 5 encaminha erro de função async sozinho).

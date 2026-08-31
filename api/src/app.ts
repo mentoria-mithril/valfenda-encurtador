@@ -1,7 +1,7 @@
 import cors from "cors";
 import express from "express";
 import { tratadorDeErros } from "./middlewares/tratadorDeErros.js";
-import { rotas } from "./rotas/index.js";
+import { rotas } from "./routes/index.js";
 
 export const app = express();
 

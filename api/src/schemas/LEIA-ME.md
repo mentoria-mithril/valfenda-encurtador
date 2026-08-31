@@ -1,4 +1,4 @@
-# esquemas/
+# schemas/
 
 Contratos de entrada, escritos em Zod. Um arquivo por recurso.
 

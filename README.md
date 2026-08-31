@@ -51,18 +51,18 @@ Comandos úteis:
 
 ```
 api/src/
-├── rotas/           só diz qual URL chama qual controlador
-├── controladores/   entrada e saída de HTTP. Sem regra de negócio.
-├── servicos/        ← a regra de negócio mora aqui
-├── repositorios/    único lugar que fala com o Prisma
-├── esquemas/        contratos de entrada em Zod
+├── routes/          só diz qual URL chama qual controlador
+├── controllers/     entrada e saída de HTTP. Sem regra de negócio.
+├── services/        ← a regra de negócio mora aqui
+├── repositories/    único lugar que fala com o Prisma
+├── schemas/         contratos de entrada em Zod
 ├── middlewares/     tratamento de erro
-└── erros/           ErroDeDominio: erro esperado, não é bug
+└── errors/          ErroDeDominio: erro esperado, não é bug
 
 web/src/
-├── servicos/        chamadas à API (nada de fetch espalhado nas telas)
-├── paginas/         uma tela
-└── componentes/     pedaços reaproveitáveis de tela
+├── services/        chamadas à API (nada de fetch espalhado nas telas)
+├── pages/           uma tela
+└── components/      pedaços reaproveitáveis de tela
 ```
 
 A rota `GET /api/saude` é o **exemplo completo** desse caminho: rota →

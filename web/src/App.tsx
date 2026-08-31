@@ -1,6 +1,6 @@
 import { Alert, Box, Container, Stack, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { consultarSaude, type Saude } from "./servicos/saude.js";
+import { consultarSaude, type Saude } from "./services/saude.js";
 
 // Tela de exemplo: consome uma rota de verdade, sem dado mockado.
 // É esse o caminho que cada fatia vai repetir — serviço -> estado -> componente.

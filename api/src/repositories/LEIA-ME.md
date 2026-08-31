@@ -1,4 +1,4 @@
-# repositorios/
+# repositories/
 
 Acesso ao banco. É o único lugar do código que fala `prisma.`.
 
