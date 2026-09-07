@@ -1,9 +1,11 @@
 import { Router } from "express";
 import { saudeRotas } from "./healthRoutes.js";
+import { urlEncurtadaRotas } from './urlRoutes.js';
 
 export const rotas = Router();
 
 rotas.use("/saude", saudeRotas);
+rotas.use('/urls-encurtadas', urlEncurtadaRotas);
 
 // A partir daqui é trabalho de vocês. Cada fatia monta o próprio Router:
 //
