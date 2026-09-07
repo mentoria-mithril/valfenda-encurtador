@@ -12,3 +12,17 @@ export async function incrementarAcessos(codigo: string): Promise<void> {
         }
     });
 }
+
+export async function findByCodigo(codigo: string): Promise<string | null>{
+    const registro: {urlOriginal: string} | null = await prisma.urlEncurtada.findUnique({
+        where: {
+            codigo: codigo,
+        },
+        select: {
+            urlOriginal: true,
+        }
+    });
+
+    const urlOriginal: string | null = registro?.urlOriginal ?? null;
+    return urlOriginal;
+}
