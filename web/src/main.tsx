@@ -3,12 +3,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { App } from "./App.js";
 import { tema } from "./theme.js";
+import ToastifyComponent from "./components/ToastifyComponent.js";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ThemeProvider theme={tema}>
       <CssBaseline />
-      <App />
+      <ToastifyComponent>
+        <App />
+      </ToastifyComponent>
     </ThemeProvider>
   </React.StrictMode>,
 );

@@ -5,7 +5,7 @@ import {
   FormControlLabel,
   IconButton,
   InputAdornment,
-  Link,
+  Link as LinkUi,
   Stack,
   TextField,
   Typography,
@@ -15,9 +15,29 @@ import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import { useState } from "react";
+import { EnviaLogin, Login } from "../services/auth";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export function FormLogin() {
   const [mostrarSenha, setMostrarSenha] = useState(false);
+  const [dados, setDados] = useState<Login>({
+    email: "",
+    senha: "",
+  });
+
+  const navigate = useNavigate()
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    EnviaLogin(dados)
+      .then((usuario)=> {
+        console.log(usuario)
+        toast.success("Login realizado com sucesso")
+        navigate('/home')
+      })
+      .catch((e: Error) => toast.error(`${e}`)) 
+  };
 
   return (
     <Box
@@ -52,18 +72,21 @@ export function FormLogin() {
           component="form"
           spacing={2.5}
           sx={{ mt: 4 }}
+          onSubmit={handleSubmit}
         >
           <TextField
             fullWidth
             label="E-mail"
             type="email"
             placeholder="voce@exemplo.com"
+            onChange={(e) => setDados({ ...dados, email: e.target.value })}
           />
 
           <TextField
             fullWidth
             label="Senha"
             type={mostrarSenha ? "text" : "password"}
+            onChange={(e) => setDados({ ...dados, senha: e.target.value })}
             slotProps={{
               input: {
                 endAdornment: (
@@ -101,9 +124,14 @@ export function FormLogin() {
                 </Typography>
               }
             />
-            <Link href="#" underline="hover" variant="body2">
+            <LinkUi
+              component={RouterLink}
+              to="/cadastro"
+              underline="hover"
+              variant="body2"
+            >
               Esqueceu a senha?
-            </Link>
+            </LinkUi>
           </Stack>
 
           <Button
@@ -124,9 +152,14 @@ export function FormLogin() {
           sx={{ mt: 4, textAlign: "center" }}
         >
           Ainda não tem conta?{" "}
-          <Link href="#" underline="hover" sx={{ fontWeight: 600 }}>
+          <LinkUi
+            component={RouterLink}
+            to="/cadastro"
+            underline="hover"
+            sx={{ fontWeight: 600 }}
+          >
             Criar conta
-          </Link>
+          </LinkUi>
         </Typography>
       </Box>
     </Box>
