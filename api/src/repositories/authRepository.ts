@@ -1,12 +1,14 @@
 import { prisma } from "../prisma.js";
 
-export async function verificaEmail(email: string): Promise<{
+export type Usuario = {
   email: string;
   senha: string;
   id: string;
   nome: string;
   dtCriacao: Date;
   dtAtualizacao: Date;
-} | null> {
+} | null
+
+export async function verificaEmail(email: string): Promise<Usuario> {
   return await prisma.usuario.findUnique({ where: { email: email } });
 }

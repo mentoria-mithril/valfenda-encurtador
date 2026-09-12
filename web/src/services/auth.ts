@@ -2,11 +2,9 @@ import { pedir } from "./api";
 
 export type Login = { email: string; senha: string };
 export type RetornoLogin = {
-  email: string;
   id: string;
   nome: string;
-  dtCriacao: Date;
-  dtAtualizacao: Date;
+  email: string;
 };
 
 export function EnviaLogin(login: Login) {

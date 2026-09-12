@@ -1,11 +1,13 @@
 import { Router } from "express";
 import { saudeRotas } from "./healthRoutes.js";
 import { authRotas } from "./authRoutes.js";
+import { logoutRotas } from "./logoutRoutes.js";
 
 export const rotas = Router();
 
 rotas.use("/saude", saudeRotas);
-rotas.use('/auth', authRotas)
+rotas.use("/auth", authRotas);
+rotas.use("/logout", logoutRotas);
 
 // A partir daqui é trabalho de vocês. Cada fatia monta o próprio Router:
 //
