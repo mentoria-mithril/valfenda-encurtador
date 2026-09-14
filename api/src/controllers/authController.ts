@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { loginSchema } from "../schemas/authSchemas.js";
-import { verificaExiste } from "../services/authService.js";
+import { trataUsuarioPeloId, verificaExiste } from "../services/authService.js";
 import { gerarAccessToken } from '../utils/jwt.js';
 
 export async function obterLogin(
@@ -20,4 +20,16 @@ export async function obterLogin(
     })
 
     return res.status(200).json(usuario)
+}
+
+export async function obterDadosUsuario(req: Request, res: Response){
+  const usuario = await trataUsuarioPeloId(req.userId)
+
+  return res.status(200).json(usuario)
+}
+
+export function logout(_req: Request, res: Response) {
+  res.clearCookie("accessToken");
+
+  return res.json({ ok: true });
 }
