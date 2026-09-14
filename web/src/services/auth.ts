@@ -13,3 +13,13 @@ export function EnviaLogin(login: Login) {
     body: JSON.stringify(login),
   });
 }
+
+export function getUsuarioSessao() {
+  return pedir<RetornoLogin>("/auth/me", {
+    method: "GET",
+  });
+}
+
+export async function logout(){
+    await pedir<void>("/auth/logout")
+}

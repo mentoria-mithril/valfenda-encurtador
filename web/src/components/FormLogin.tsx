@@ -15,9 +15,10 @@ import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import { useState } from "react";
-import { EnviaLogin, Login } from "../services/auth";
+import { Login } from "../services/auth";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useAuth } from "../contexts/AuthContext";
 
 export function FormLogin() {
   const [mostrarSenha, setMostrarSenha] = useState(false);
@@ -26,13 +27,14 @@ export function FormLogin() {
     senha: "",
   });
 
+  const { realizaLogin } = useAuth()
+
   const navigate = useNavigate()
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    EnviaLogin(dados)
-      .then((usuario)=> {
-        console.log(usuario)
+    realizaLogin(dados)
+      .then(()=> {
         toast.success("Login realizado com sucesso")
         navigate('/home')
       })
