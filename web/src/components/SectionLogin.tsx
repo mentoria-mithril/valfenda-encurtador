@@ -1,7 +1,7 @@
 import { Box, Divider, Stack, Typography } from "@mui/material";
 import LinkRoundedIcon from "@mui/icons-material/LinkRounded";
 
-export function SectionLogin() {
+export function SectionLogin({ texto }: { texto: string }) {
     return (
         <Box
         sx={{
@@ -53,8 +53,7 @@ export function SectionLogin() {
           </Stack>
 
           <Typography variant="body2" color="text.secondary">
-            Links longos ficam difíceis de lembrar e de compartilhar. Encurte
-            os seus, acompanhe cliques e organize tudo em um só lugar.
+            {texto}
           </Typography>
         </Stack>
 
