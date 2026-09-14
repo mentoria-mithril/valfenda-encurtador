@@ -9,6 +9,6 @@ export type Usuario = {
   dtAtualizacao: Date;
 } | null
 
-export async function verificaEmail(email: string): Promise<Usuario> {
+export async function buscaEmail(email: string): Promise<Usuario> {
   return await prisma.usuario.findUnique({ where: { email: email } });
 }

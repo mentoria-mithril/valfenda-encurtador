@@ -2,10 +2,12 @@ import { Router } from "express";
 import { saudeRotas } from "./healthRoutes.js";
 import { authRotas } from "./authRoutes.js";
 import { logoutRotas } from "./logoutRoutes.js";
+import { usuarioRotas } from "./userRoutes.js";
 
 export const rotas = Router();
 
 rotas.use("/saude", saudeRotas);
+rotas.use("/usuarios", usuarioRotas)
 rotas.use("/auth", authRotas);
 rotas.use("/logout", logoutRotas);
 

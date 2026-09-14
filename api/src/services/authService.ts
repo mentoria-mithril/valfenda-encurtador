@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import { ErroDeDominio } from "../errors/DomainError.js";
-import { verificaEmail } from "../repositories/authRepository.js";
+import { buscaEmail } from "../repositories/authRepository.js";
 import { Login } from "../schemas/authSchemas.js";
 
 export type RetornoLogin = {
@@ -10,7 +10,7 @@ export type RetornoLogin = {
 };
 
 export async function verificaExiste({ email, senha }: Login): Promise<RetornoLogin> {
-  const usuario = await verificaEmail(email);
+  const usuario = await buscaEmail(email);
   if (!usuario) throw new ErroDeDominio("Email ou senha inválida", 409);
 
   const isSenhaCorreta = await bcrypt.compare(senha, usuario.senha);
