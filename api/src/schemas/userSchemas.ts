@@ -5,5 +5,3 @@ export const usuarioSchema = z.object({
   email: z.string().email("E-mail inválido."),
   senha: z.string().min(1, "Preenchimento obrigatório"),
 });
-
-export type UsuarioInput = z.infer<typeof usuarioSchema>;

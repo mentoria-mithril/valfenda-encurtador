@@ -1,15 +1,14 @@
 import bcrypt from "bcryptjs";
 import { ErroDeDominio } from "../errors/DomainError.js";
-import { buscaEmail } from "../repositories/authRepository.js";
-import { UsuarioInput } from "../schemas/userSchemas.js";
-import { adicionaUsuario } from "../repositories/userRepository.js";
+import { adicionaUsuario, buscaUsuarioPeloEmail } from "../repositories/userRepository.js";
+import { Cadastro, UsuarioCompleto } from "../types/user.js";
+import { SALT_ROUNDS } from "../utils/constants.js";
 
-export async function salvaCadastro(cadastro: UsuarioInput): Promise<void>{
-    const usuario = await buscaEmail(cadastro.email)
+export async function salvaCadastro(cadastro: Cadastro): Promise<void>{
+    const usuario: UsuarioCompleto = await buscaUsuarioPeloEmail(cadastro.email)
     if(usuario) throw new ErroDeDominio("Email já existe", 409)
 
-    const SALT_ROUNDS = 10
-    const senhaHash = await bcrypt.hash(cadastro.senha, SALT_ROUNDS)
+    const senhaHash: string = await bcrypt.hash(cadastro.senha, SALT_ROUNDS)
 
-    await adicionaUsuario({ nome: cadastro.nome, email: cadastro.email, senha: senhaHash })
+    await adicionaUsuario({ ...cadastro, senha: senhaHash })
 }

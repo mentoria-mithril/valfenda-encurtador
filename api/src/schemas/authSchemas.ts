@@ -4,5 +4,3 @@ export const loginSchema = z.object({
     email: z.string().email('E-mail inválido.'),
     senha: z.string().min(1, 'Senha é obrigatória.')
 })
-
-export type Login = z.infer<typeof loginSchema>
