@@ -1,6 +1,7 @@
 import { Alert, Box, Container, Stack, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { consultarSaude, type Saude } from "./services/health.js";
+import { Home } from "./pages/Home";
 
 // Tela de exemplo: consome uma rota de verdade, sem dado mockado.
 // É esse o caminho que cada fatia vai repetir — serviço -> estado -> componente.
@@ -15,7 +16,7 @@ export function App() {
   }, []);
 
   return (
-    <Container maxWidth="sm" sx={{ py: 8 }}>
+    <Container maxWidth="md" sx={{ py: 8 }}>
       <Stack spacing={3}>
         <Box>
           <Typography variant="h4" fontWeight={600}>
@@ -38,6 +39,8 @@ export function App() {
           Esta tela existe só para provar que front, API e banco se enxergam.
           A primeira fatia entregue substitui ela.
         </Typography>
+
+        <Home />
       </Stack>
     </Container>
   );
