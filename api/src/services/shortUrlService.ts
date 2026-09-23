@@ -1,4 +1,5 @@
 import { ambiente } from "../env.js";
+import { ErroDeDominio } from "../errors/DomainError.js";
 import { listarPorUsuario } from "../repositories/shortUrlRepository.js";
 
 export type ItemDoHistorico = {
@@ -11,7 +12,8 @@ export type ItemDoHistorico = {
 
 // Histórico de quem está logado. O filtro por usuário mora no repositório e
 // recebe o id que veio do token — nunca um id escolhido pelo cliente.
-export async function listarHistorico(usuarioId: string): Promise<ItemDoHistorico[]> {
+export async function listarHistorico(usuarioId: string | undefined): Promise<ItemDoHistorico[]> {
+  if(!usuarioId) throw new ErroDeDominio("Id do usuário inválido", 409);
   const urls = await listarPorUsuario(usuarioId);
 
   return urls.map((url) => ({

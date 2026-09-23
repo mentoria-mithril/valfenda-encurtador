@@ -8,8 +8,8 @@ export type ItemDoHistorico = {
   dt_criacao: string;
 };
 
-export function listarHistorico(token: string) {
+export function listarHistorico() {
   return pedir<ItemDoHistorico[]>("/urls-encurtadas", {
-    headers: { Authorization: `Bearer ${token}` },
+    method: "GET"
   });
 }

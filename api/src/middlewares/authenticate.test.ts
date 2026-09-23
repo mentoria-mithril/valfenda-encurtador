@@ -7,7 +7,7 @@ function chamar(authorization?: string) {
   const req = { headers: { authorization } } as Request;
   const res = { locals: {} } as Response;
   const proximo = vi.fn();
-  return { executar: () => autenticar(req, res, proximo), res, proximo };
+  return { executar: () => autenticar(req, res, proximo), req, proximo };
 }
 
 describe("autenticar", () => {
@@ -30,11 +30,11 @@ describe("autenticar", () => {
   });
 
   it("com token, segue com o usuário em res.locals", () => {
-    const { executar, res, proximo } = chamar("Bearer u1");
+    const { executar, req, proximo } = chamar("Bearer u1");
 
     executar();
 
-    expect(res.locals.usuarioId).toBe("u1");
+    expect(req.userId).toBe("u1"); 
     expect(proximo).toHaveBeenCalledOnce();
   });
 });

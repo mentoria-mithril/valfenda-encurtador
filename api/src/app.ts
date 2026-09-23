@@ -2,12 +2,14 @@ import cors from "cors";
 import express from "express";
 import { tratadorDeErros } from "./middlewares/errorHandler.js";
 import { rotas } from "./routes/index.js";
+import cookieParser from "cookie-parser";
 import urlEncurtadaRedirectRoutes from "./routes/urlEncurtadaRedirectRoutes.js";
 
 export const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser())
 
 // Toda a API vive sob /api. Isso deixa a raiz livre para o redirecionamento
 // da URL encurtada (fatia C): GET /:codigo -> 302 para a url original.
