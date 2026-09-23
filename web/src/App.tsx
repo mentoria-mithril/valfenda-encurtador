@@ -3,6 +3,7 @@ import { TelaLogin } from "./pages/TelaLogin";
 import { TelaCadastro } from "./pages/TelaCadastro";
 import { RotaProtegida } from "./components/RotaProtegida";
 import { RotaPublica } from "./components/RotaPublica";
+import { HistoryPage } from "./pages/HistoryPage.js";
 
 export function App() {
   return (
@@ -13,7 +14,7 @@ export function App() {
           <Route path="/cadastro" element={<TelaCadastro />} />
         </Route>
         <Route element={<RotaProtegida />}>
-          {/* <Route path="/" element={<HomePage/>}/> */}
+          <Route path="/historico" element={<HistoryPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import { loginSchema } from "../schemas/authSchemas.js";
 import { trataUsuarioPeloId, verificaExiste } from "../services/authService.js";
 import { gerarAccessToken } from '../utils/jwt.js';
-import { DURACAO_UM_Dia } from '../utils/constants.js';
+import { DURACAO_UM_DIA } from '../utils/constants.js';
 import { Login, UsuarioPublico } from '../types/user.js';
 
 export async function obterLogin(
@@ -18,7 +18,7 @@ export async function obterLogin(
       httpOnly: true,
       secure: true,
       sameSite: "strict",
-      maxAge: DURACAO_UM_Dia
+      maxAge: DURACAO_UM_DIA
     })
 
     return res.status(200).json(usuarioPublico)
