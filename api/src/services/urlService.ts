@@ -13,7 +13,7 @@ export async function criarUrlEncurtada(dados: CriarUrlEncurtada, usuarioId?: st
   if (dados.alias) {
     const existente = await buscarUrlPorCodigo(dados.alias);
     if (existente) {
-      throw new ErroDeDominio("alias já em uso", 409);
+      throw new ErroDeDominio("Alias já em uso", 409);
     }
     codigo = dados.alias;
   } else {

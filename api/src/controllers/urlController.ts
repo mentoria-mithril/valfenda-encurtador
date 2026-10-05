@@ -5,9 +5,10 @@ import { criarUrlEncurtada } from "../services/urlService.js";
 
 export async function criarUrl(req: Request, res: Response) {
   const dados = criarUrlEncurtadaEsquema.parse(req.body);
-  const usuarioId = req.usuario?.id;
-
-  const urlCriada = await criarUrlEncurtada(dados, usuarioId);
+  
+  // Sem login por enquanto: a URL fica sem dono (usuario_id nulo).
+  // Quando a fatia A entregar o login, passar o id do token aqui.
+  const urlCriada = await criarUrlEncurtada(dados);
 
   res.status(201).json({
     codigo: urlCriada.codigo,

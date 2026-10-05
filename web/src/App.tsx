@@ -1,5 +1,6 @@
 import { Alert, Box, Container, Stack, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+import { HistoryPage } from "./pages/HistoryPage.js";
 import { consultarSaude, type Saude } from "./services/health.js";
 
 // Tela de exemplo: consome uma rota de verdade, sem dado mockado.
@@ -34,10 +35,7 @@ export function App() {
           </Alert>
         )}
 
-        <Typography variant="body2" color="text.secondary">
-          Esta tela existe só para provar que front, API e banco se enxergam.
-          A primeira fatia entregue substitui ela.
-        </Typography>
+        <HistoryPage />
       </Stack>
     </Container>
   );
