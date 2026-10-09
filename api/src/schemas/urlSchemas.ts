@@ -1,7 +1,21 @@
 import { z } from "zod";
 
+
+const protocolos = ["http:", "https:"] ;
+
+
 export const criarUrlEncurtadaEsquema = z.object({
-  url_original: z.string().trim().url("precisa ser uma URL válida"),
+  url_original: z
+  .string()
+  .trim()
+  .max(2222, "url muito longa")
+  .url("precisa ser uma URL válida")
+  .refine(
+    (valor) => protocolos.includes(new URL(valor).protocol)
+    , "precisa ser uma URL com protocolo http ou https") ,
+  
+  
+  
   alias: z
     .string()
     .trim()
