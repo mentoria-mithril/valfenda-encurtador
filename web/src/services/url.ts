@@ -5,8 +5,20 @@ export interface CreateUrlPayload {
   alias?: string;
 }
 
+
+export interface UrlEncurtada { // Interface para representar a URL encurtada retornada pelo backend
+  codigo: string;
+  url_original: string;
+  usuario_id: string | null;
+  dt_criacao: string;
+  qtd_acessos: number;
+  url_encurtada: string;
+  qrcode: string;
+}
+
+
 export function encurtarUrl(payload: CreateUrlPayload) {
-  return pedir('/urls-encurtadas', {
+  return pedir<UrlEncurtada>('/urls-encurtadas', {
     method: 'POST',
     body: JSON.stringify(payload),
   });

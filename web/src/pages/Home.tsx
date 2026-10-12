@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
 import { Container } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import { UrlForm } from '../components/UrlForm';
-import { encurtarUrl, verificarAliasDisponivel } from '../services/url';
+import { encurtarUrl, verificarAliasDisponivel, type UrlEncurtada } from '../services/url';
+import { ShortUrlResult } from '../components/ShortUrlResult';
 
 export function Home() {
   const [urlOriginal, setUrlOriginal] = useState('');
@@ -9,6 +10,7 @@ export function Home() {
   const [aliasError, setAliasError] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
+  const [resultado , setResultado] = useState<UrlEncurtada | null>(null);
 
   useEffect(() => {
     if (!alias.trim()) {
@@ -34,20 +36,23 @@ export function Home() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage('');
+    setResultado(null);
+
 
     if (aliasError) return;
 
     setLoading(true);
 
     try {
-      await encurtarUrl({
+      const urlCriada = await encurtarUrl({ 
         url_original: urlOriginal,
         alias: alias.trim() ? alias.trim() : undefined,
       });
 
+      setResultado(urlCriada);
       setUrlOriginal('');
       setAlias('');
-      alert('URL encurtada com sucesso!');
+      
     } catch (err: any) {
       setErrorMessage(err.message);
     } finally {
@@ -70,6 +75,8 @@ export function Home() {
         loading={loading}
         onSubmit={handleSubmit}
       />
+
+      {resultado && <ShortUrlResult url={resultado} />}
     </Container>
   );
 }
