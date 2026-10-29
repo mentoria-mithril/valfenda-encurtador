@@ -3,6 +3,7 @@
 export async function pedir<T>(caminho: string, opcoes: RequestInit = {}): Promise<T> {
   const resposta = await fetch(`/api${caminho}`, {
     ...opcoes,
+    credentials: "include",
     headers: { "Content-Type": "application/json", ...opcoes.headers },
   });
 
