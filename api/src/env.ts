@@ -8,6 +8,7 @@ function obrigatoria(nome: string): string {
 
 export const ambiente = {
   bancoUrl: obrigatoria("DATABASE_URL"),
+  jwtAccessSecret: obrigatoria("JWT_ACCESS_SECRET"),
   porta: Number(process.env.PORTA ?? 3333),
   urlBase: process.env.URL_BASE ?? "http://localhost:3333",
 };
