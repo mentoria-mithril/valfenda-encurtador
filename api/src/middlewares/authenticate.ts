@@ -5,7 +5,7 @@ import { ACCESS_SECRET } from "../utils/constants.js";
 
 export function autenticar(req: Request, res: Response, proximo: NextFunction) {
   const token: string = req.cookies.accessToken;
-  if (!token) throw new ErroDeDominio("Não autenticado", 409);
+  if (!token) throw new ErroDeDominio("Não autenticado", 401);
 
   try {
     const payload = jwt.verify(token, ACCESS_SECRET) as { sub: string };
