@@ -12,7 +12,7 @@ export function Home() {
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
-  // Placeholder até juntar com a fatia de login: trocar por estado de auth real.
+
   const logado = false;
   const [urls, setUrls] = useState<UrlEncurtada[]>([]);
   const [carregando, setCarregando] = useState(logado);
@@ -79,7 +79,7 @@ export function Home() {
   };
 
   function compartilhar(url: UrlEncurtada) {
-    navigator.clipboard.writeText(url.urlEncurtada);
+    navigator.clipboard.writeText(url.url_encurtada);
   }
 
   async function remover(url: UrlEncurtada) {

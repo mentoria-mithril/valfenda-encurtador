@@ -1,8 +1,7 @@
 import { Router } from "express";
 import { urlEncurtadaController } from "../controllers/urlEncurtadaController.js";
 
-const router = Router();
+export const redirecionamentoRotas = Router()
 
-router.get('/:codigo', urlEncurtadaController);
+redirecionamentoRotas.get('/:codigo', urlEncurtadaController);
 
-export default router;
