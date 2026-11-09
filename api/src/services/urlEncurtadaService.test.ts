@@ -1,10 +1,10 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("../env.js", () => ({ ambiente: { urlBase: "http://curto.test" } }));
-vi.mock("../repositories/shortUrlRepository.js", () => ({ listarPorUsuario: vi.fn() }));
+vi.mock("..//repositories/urlEncurtadaRepository.js", () => ({ listarPorUsuario: vi.fn() }));
 
-const { listarPorUsuario } = await import("../repositories/shortUrlRepository.js");
-const { listarHistorico } = await import("./shortUrlService.js");
+const { listarPorUsuario } = await import("../repositories/urlEncurtadaRepository.js");
+const { listarHistorico } = await import("./urlEncurtadaService.js");
 
 describe("listarHistorico", () => {
   beforeEach(() => vi.mocked(listarPorUsuario).mockReset());

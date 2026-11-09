@@ -19,10 +19,10 @@ export function ShortenedUrlCard({ url, aoCompartilhar, aoRemover }: Props) {
     <Paper variant="outlined" sx={{ p: 2 }}>
       <Stack direction="row" spacing={2} alignItems="flex-start">
         <Box sx={{ flex: 1, minWidth: 0 }}>
-          <Campo rotulo="url original" valor={url.urlOriginal} />
-          <Campo rotulo="url encurtada" valor={url.urlEncurtada} />
-          <Campo rotulo="quantidade de acessos" valor={String(url.qtdAcessos)} />
-          <Campo rotulo="criado em" valor={formatoData.format(new Date(url.dtCriacao))} />
+          <Campo rotulo="url original" valor={url.url_original} />
+          <Campo rotulo="url encurtada" valor={url.url_encurtada} />
+          <Campo rotulo="quantidade de acessos" valor={String(url.qtd_acessos)} />
+          <Campo rotulo="criado em" valor={formatoData.format(new Date(url.dt_criacao))} />
         </Box>
 
         <Stack spacing={1}>

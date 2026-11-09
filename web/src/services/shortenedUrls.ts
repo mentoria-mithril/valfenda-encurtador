@@ -2,10 +2,10 @@ import { pedir } from "./api.js";
 
 export type UrlEncurtada = {
   codigo: string;
-  urlOriginal: string;
-  urlEncurtada: string;
-  qtdAcessos: number;
-  dtCriacao: string;
+  url_original: string;
+  url_encurtada: string;
+  qtd_acessos: number;
+  dt_criacao: string;
 };
 
 export function listarUrls() {
