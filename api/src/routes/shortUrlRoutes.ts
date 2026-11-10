@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { obterHistorico } from "../controllers/shortUrlController.js";
-import { criarUrl } from "../controllers/urlController.js"; 
+import { criarUrl } from "../controllers/urlController.js";
 import { autenticar } from "../middlewares/authenticate.js";
 
 export const urlEncurtadaRotas = Router();
@@ -9,4 +9,4 @@ export const urlEncurtadaRotas = Router();
 urlEncurtadaRotas.get("/", autenticar, obterHistorico);
 
 // Fatia B — encurtar. Público: não usa `autenticar`.
-urlEncurtadaRotas.post("/", criarUrl);
+urlEncurtadaRotas.post("/", criarUrl, autenticar);
