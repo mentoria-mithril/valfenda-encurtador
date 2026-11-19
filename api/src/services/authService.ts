@@ -8,10 +8,10 @@ import { Login, UsuarioCompleto, UsuarioPublico } from "../types/user.js";
 
 export async function verificaExiste(login: Login): Promise<UsuarioPublico> {
   const usuario: UsuarioCompleto = await buscaUsuarioPeloEmail(login.email);
-  if (!usuario) throw new ErroDeDominio("Email ou senha inválida", 409);
+  if (!usuario) throw new ErroDeDominio("Email ou senha inválida", 401);
 
   const isSenhaCorreta: boolean = await bcrypt.compare(login.senha, usuario.senha);
-  if (!isSenhaCorreta) throw new ErroDeDominio("Email ou senha inválida", 409);
+  if (!isSenhaCorreta) throw new ErroDeDominio("Email ou senha inválida", 401);
 
   const { senha, ...usuarioPublico } = usuario;
 
@@ -19,10 +19,10 @@ export async function verificaExiste(login: Login): Promise<UsuarioPublico> {
 }
 
 export async function trataUsuarioPeloId(id: string | undefined): Promise<UsuarioPublico> {
-  if (!id) throw new ErroDeDominio("Id do usuário inválido", 409);
+  if (!id) throw new ErroDeDominio("Id do usuário inválido", 401);
 
   const usuarioPublico: UsuarioPublico | null = await buscaUsuarioPeloId(id);
-  if (!usuarioPublico) throw new ErroDeDominio("Usuário não existe", 409);
+  if (!usuarioPublico) throw new ErroDeDominio("Usuário não existe", 401);
 
   return usuarioPublico;
 }
