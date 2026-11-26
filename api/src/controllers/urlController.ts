@@ -1,7 +1,8 @@
 import type { Request, Response } from "express";
 import { criarUrlEncurtadaEsquema } from "../schemas/urlSchemas.js";
 import { criarUrlEncurtada } from "../services/urlService.js";
-
+import { urlEncurtadaParamsSchema } from "../schemas/urlEncurtadaSchema.js";
+import { excluirUrlService } from "../services/urlEncurtadaService.js";
 
 export async function criarUrl(req: Request, res: Response) {
   const dados = criarUrlEncurtadaEsquema.parse(req.body);
@@ -21,3 +22,10 @@ export async function criarUrl(req: Request, res: Response) {
 }
 
 // qr code sendo gerado no serviço de encurtamento de url, e retornado para o cliente junto com a url encurtada.
+
+export async function excluirUrlController(req: Request<{ codigo: string }>, res: Response): Promise<void> {
+    const { codigo } = urlEncurtadaParamsSchema.parse(req.params);
+    const usuarioId: string = req.userId!;
+    await excluirUrlService(usuarioId, codigo);
+    res.status(204).send();
+}
